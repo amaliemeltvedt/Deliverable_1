@@ -1,3 +1,3 @@
 # dette er bare en test
 
-print("Hello")
+print("Hallo")

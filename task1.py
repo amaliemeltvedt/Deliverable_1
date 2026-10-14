@@ -33,6 +33,32 @@ else:
     print('Message: %s' % json['error']['message'])
     print('Reason: %s' % json['error']['reason'])
 
+# Extract dates and temperatures from the json-data
+
+df = pd.DataFrame([
+    {
+        "date": entry["referenceTime"],
+        "temperature": observation["value"]
+    }
+    for entry in data
+    for observation in entry["observations"]
+    if observation["timeOffset"] == "PT0H"
+    ])
+
+# Covert the dates to datetime objects
+df["date"] = pd.to_datetime(df["date"])
+
 # Making the plot
 fig, ax = plt.subplots()
 ax.plot(df["date"], df["temperature"])
+
+# Formatting the plot
+ax.set_xlabel("Date")
+ax.set_ylabel("Temperature (°C)")
+ax.set_title("Daily Mean Air Temperature in 2025 at SN17850")
+
+# Make the x-akix labels more readable
+fig.autofmt_xdate()
+
+# Show the plot
+plt.show()

@@ -45,7 +45,7 @@ df = pd.DataFrame([
     if observation["timeOffset"] == "PT0H"
     ])
 
-# Covert the dates to datetime objects
+# Convert the dates to datetime objects
 df["date"] = pd.to_datetime(df["date"])
 
 # Making the plot
@@ -57,8 +57,13 @@ ax.set_xlabel("Date")
 ax.set_ylabel("Temperature (°C)")
 ax.set_title("Daily Mean Air Temperature in 2025 at SN17850")
 
-# Make the x-akix labels more readable
+# Make the x-axis labels more readable
 fig.autofmt_xdate()
 
 # Show the plot
 plt.show()
+
+# Making a summary table 
+summary_table = df[["temperature"]].agg(["mean", "median", "min", "max"]).round(2)
+print("\nSummary Table:")
+print(summary_table)

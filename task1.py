@@ -34,6 +34,5 @@ else:
     print('Reason: %s' % json['error']['reason'])
 
 # Making the plot
-# plt.subplots
-
-print(json)
+fig, ax = plt.subplots()
+ax.plot(df["date"], df["temperature"])

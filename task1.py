@@ -2,6 +2,7 @@
 import requests
 import pandas as pd
 import os
+import matplotlib.pyplot as plt
 
 # fra chat
 from dotenv import load_dotenv
@@ -31,3 +32,8 @@ else:
     print('Error! Returned status code %s' % r.status_code)
     print('Message: %s' % json['error']['message'])
     print('Reason: %s' % json['error']['reason'])
+
+# Making the plot
+# plt.subplots
+
+print(json)

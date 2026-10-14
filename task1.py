@@ -28,6 +28,7 @@ json = r.json()
 if r.status_code == 200:
     data = json['data']
     print('Data retrieved from frost.met.no!')
+
 else:
     print('Error! Returned status code %s' % r.status_code)
     print('Message: %s' % json['error']['message'])

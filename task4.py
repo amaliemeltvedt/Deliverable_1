@@ -49,37 +49,43 @@ temperatures = [
 # Convert dates to datetime objects
 temperature_dates = pd.to_datetime(temperature_dates)
 
-# Creating empty lists for the for loop
-consecutive_days = 0
-heatwaves = []
-start_date = None
-end_date = None
+
 
 # Creating a for loop to add one day if temp is above 27
 # It then adds to heatwave count if it lasted over 5 days
 # It also adds the dates
-for date, temperature in zip(temperature_dates, temperatures):
-    if temperature >= 27:
-        if consecutive_days == 0:
-            start_date = date
+def count_heatwaves():
+    # Creating empty lists for the for loop
+    consecutive_days = 0
+    heatwaves = []
+    start_date = None
+    end_date = None
+    
+    for date, temperature in zip(temperature_dates, temperatures):
+        if temperature >= 27:
+            if consecutive_days == 0:
+                start_date = date
 
-        consecutive_days += 1
-        end_date = date
+            consecutive_days += 1
+            end_date = date
 
-    else:
-        if consecutive_days >= 5:
-            dates = f"{start_date.date()} - {end_date.date()}"
-            heatwaves.append(dates)
+        else:
+            if consecutive_days >= 5:
+                dates = f"{start_date.date()} - {end_date.date()}"
+                heatwaves.append(dates)
 
-        consecutive_days = 0
-        
-# Checking again in case a heatwave continues after the last day of the data set       
-if consecutive_days >= 5:
-    dates = f"{start_date.date()} - {end_date.date()}"
-    heatwaves.append(dates)
-        
+            consecutive_days = 0
+            
+    # Checking again in case a heatwave continues after the last day of the data set       
+    if consecutive_days >= 5:
+        dates = f"{start_date.date()} - {end_date.date()}"
+        heatwaves.append(dates)
+    return heatwaves
+
+heatwaves = count_heatwaves()
+
 # Making a function to print using the yml format
-def print_summary():
+def print_summary(heatwaves):
     print("dates:")
     for date in heatwaves:
         print(f"- {date}")
@@ -88,4 +94,4 @@ def print_summary():
     print(f"station_name: {station_name}")
     print(f"year: {parameters['referencetime'][:4]}")
     
-print_summary()
+print_summary(heatwaves)

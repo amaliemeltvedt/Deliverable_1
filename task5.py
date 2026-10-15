@@ -50,7 +50,7 @@ df = pd.DataFrame([
 
 # Convert the dates to datetime objects
 df["date"] = pd.to_datetime(df["date"])
-
+print(df["date"])
 # from now on to main ipynb file
 
 def calculate_moving_avg(temperatures):

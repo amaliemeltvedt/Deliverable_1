@@ -1,4 +1,4 @@
-# Libraries needed (pandas is not standard and must be installed in Python)
+# Libraries needed 
 
 # note to self: in main ipynb file you only need to call on the df, everything under can be ignored
 import requests

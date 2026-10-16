@@ -41,7 +41,8 @@ precipitation_response = requests.get(endpoint, parameters, auth=(client_id,''))
 precipitation_data = precipitation_response.json()["data"]
 
 
-# Everything under is from ChatGPT
+# Everything under is by help from ChatGPT
+# See AI chat log
   
 # Extract dates and values for temperature
 temperature_dates = [
